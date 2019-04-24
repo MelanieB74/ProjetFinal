@@ -56,4 +56,11 @@ public class ClientServiceImplTest {
         Mockito.verify(clientDao).delete(myClient);
     }
 
+    @Test
+    public void should_search_by_id_when_findById_is_called() {
+        LOGGER.info("--------------- Executing should_search_by_id_when_findById_is_called test Of ClientServiceImplTest ---------------");
+        Integer id = new Integer(1);
+        clientService.findById(id);
+        Mockito.verify(clientDao).findById(id);
+    }
 }

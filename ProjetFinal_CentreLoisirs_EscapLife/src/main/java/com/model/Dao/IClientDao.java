@@ -10,7 +10,7 @@ import com.model.Client;
 @Repository
 public interface IClientDao extends JpaRepository<Client, Integer>{
 
-	public Client findById(long id);
+	public Client findById(int id);
 	
 	
 	
