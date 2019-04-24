@@ -1,6 +1,7 @@
 package com.model.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,14 +9,11 @@ import org.springframework.stereotype.Service;
 import com.model.Client;
 import com.model.Dao.IClientDao;
 
-
-
 @Service("serviceClient")
-public class ClientServiceImpl implements IClientService{
-	
+public class ClientServiceImpl implements IClientService {
+
 	@Autowired
 	IClientDao clientDao;
-	 
 
 	public ClientServiceImpl(IClientDao clientDao) {
 		super();
@@ -24,14 +22,14 @@ public class ClientServiceImpl implements IClientService{
 
 	@Override
 	public Client save(Client client) {
-		
+
 		return clientDao.save(client);
 	}
 
 	@Override
 	public Client update(Client client) {
-		
-		  return  clientDao.save(client);
+
+		return clientDao.save(client);
 	}
 
 	@Override
@@ -42,8 +40,8 @@ public class ClientServiceImpl implements IClientService{
 
 	@Override
 	public Client findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Client> client = clientDao.findById(id);
+		return (client == null ? null : client.orElse(null));
 	}
 
 	@Override
@@ -57,7 +55,5 @@ public class ClientServiceImpl implements IClientService{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
 
 }
