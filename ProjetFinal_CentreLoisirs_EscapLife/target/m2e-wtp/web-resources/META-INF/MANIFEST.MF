@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Implementation-Title: ProjetFinal_CentreLoisirs_EscapLife Maven Webapp
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: INTI
+Built-By: IN-LY-019
 Implementation-Vendor-Id: spring-boot-projects
 Build-Jdk: 1.8.0_201
 Implementation-URL: http://maven.apache.org
