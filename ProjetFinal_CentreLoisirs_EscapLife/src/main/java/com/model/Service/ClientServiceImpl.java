@@ -15,7 +15,7 @@ public class ClientServiceImpl implements IClientService{
 	
 	@Autowired
 	IClientDao clientDao;
-	
+	 
 
 	public ClientServiceImpl(IClientDao clientDao) {
 		super();
@@ -23,9 +23,9 @@ public class ClientServiceImpl implements IClientService{
 	}
 
 	@Override
-	public Client save(Client Client) {
-		// TODO Auto-generated method stub
-		return null;
+	public Client save(Client client) {
+		
+		return clientDao.save(client);
 	}
 
 	@Override
