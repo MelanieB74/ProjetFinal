@@ -53,7 +53,7 @@ public class ClientServiceImpl implements IClientService {
 	@Override
 	public Client findByNom(String nom) {
 		// TODO Auto-generated method stub
-		return null;
+		return clientDao.findByNom(nom);
 	}
 
 	
