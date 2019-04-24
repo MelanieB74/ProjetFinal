@@ -6,11 +6,11 @@ import com.model.Client;
 
 public interface IClientService {
 
-public Client save(Client Client);
+public Client save(Client client);
     
-    public Client update(Client Client);
+    public Client update(Client client);
     
-    public void delete(Client Client);
+    public void delete(Client client);
     
     public Client findById(Integer id);
     

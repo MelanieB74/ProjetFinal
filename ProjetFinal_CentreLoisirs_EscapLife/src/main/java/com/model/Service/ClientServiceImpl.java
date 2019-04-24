@@ -29,9 +29,9 @@ public class ClientServiceImpl implements IClientService{
 	}
 
 	@Override
-	public Client update(Client Client) {
-		// TODO Auto-generated method stub
-		return null;
+	public Client update(Client client) {
+		
+		  return  clientDao.save(client);
 	}
 
 	@Override
