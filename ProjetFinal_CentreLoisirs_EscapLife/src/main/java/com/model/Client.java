@@ -22,11 +22,11 @@ public class Client extends Personne {
 	
 	
 	// ============================ ATTRIBUTS ========================================
-	//statut du client : étudiant, sénior, moins de 25 ans
+	//statut du client : ï¿½tudiant, sï¿½nior, moins de 25 ans
 	@Column(name="statut")
 	private String statut;
 	
-	//jointure avec la table Utilisateur pour lui affecter un rôle (selon son id_utilisateur)
+	//jointure avec la table Utilisateur pour lui affecter un rï¿½le (selon son id_utilisateur)
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_utilisateur")
 	Utilisateur utilisateur;
