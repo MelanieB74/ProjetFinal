@@ -47,4 +47,13 @@ public class ClientServiceImplTest {
        clientService.update(myClient);
         Mockito.verify(clientDao).save(myClient);
     }
+
+    @Test
+    public void should_delete_when_delete_is_called() {
+        LOGGER.info("--------------- Executing should_delete_when_delete_is_called test Of ClientServiceImplTest ---------------");
+        Client myClient = new Client();
+        clientService.delete(myClient);
+        Mockito.verify(clientDao).delete(myClient);
+    }
+
 }
