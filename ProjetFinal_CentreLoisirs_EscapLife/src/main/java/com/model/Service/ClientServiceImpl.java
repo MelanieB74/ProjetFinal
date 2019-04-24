@@ -51,10 +51,12 @@ public class ClientServiceImpl implements IClientService {
 	}
 
 	@Override
-	public Client findByFirstNameAndLastName(String firstName, String lastName) {
+	public Client findByNom(String nom) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 	
 }

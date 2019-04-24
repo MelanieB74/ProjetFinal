@@ -71,4 +71,12 @@ public class ClientServiceImplTest {
         Mockito.verify(clientDao).findAll();
     }
 
+    @Test
+    public void should_search_by_firstname_and_last_name_when_findByFirstNameAndLastName_is_called() {
+        LOGGER.info("--------------- Executing should_search_by_firstname_and_last_name_when_findByFirstNameAndLastName_is_called test Of UserServiceImplTest ---------------");
+        String nom = "John";
+        clientService.findByNom(nom);
+        Mockito.verify(clientDao).findByNom(nom);
+    }
+    
 }

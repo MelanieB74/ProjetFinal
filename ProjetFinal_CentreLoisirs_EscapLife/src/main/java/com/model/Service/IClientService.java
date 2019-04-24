@@ -16,7 +16,8 @@ public Client save(Client client);
     
     public List<Client> findAll();
     
-    public Client findByFirstNameAndLastName(String firstName, String lastName);
+
+	public Client findByNom(String nom);
     
    
 }
