@@ -34,9 +34,17 @@ public class ClientServiceImplTest {
     
     @Test
     public void should_store_when_save_is_called() {
-        LOGGER.info("--------------- Executing should_store_when_save_is_called test Of UserServiceImplTest ---------------");
+        LOGGER.info("--------------- Executing should_store_when_save_is_called test Of ClientServiceImplTest ---------------");
         Client myClient = new Client();
         clientService.save(myClient);
+        Mockito.verify(clientDao).save(myClient);
+    }
+    
+    @Test
+    public void should_update_when_update_is_called() {
+        LOGGER.info("--------------- Executing should_update_when_update_is_called test Of ClientServiceImplTest ---------------");
+        Client myClient = new Client();
+       clientService.update(myClient);
         Mockito.verify(clientDao).save(myClient);
     }
 }
