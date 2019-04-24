@@ -1,4 +1,14 @@
 -------------------------------------------------------------------------------
 Test set: ServiceTest.ClientServiceImplTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.758 s - in ServiceTest.ClientServiceImplTest
+Tests run: 6, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 5.901 s <<< FAILURE! - in ServiceTest.ClientServiceImplTest
+should_search_by_firstname_and_last_name_when_findByFirstNameAndLastName_is_called(ServiceTest.ClientServiceImplTest)  Time elapsed: 0 s  <<< FAILURE!
+org.mockito.exceptions.verification.WantedButNotInvoked: 
+
+Wanted but not invoked:
+clientDao.findByNom("John");
+-> at ServiceTest.ClientServiceImplTest.should_search_by_firstname_and_last_name_when_findByFirstNameAndLastName_is_called(ClientServiceImplTest.java:79)
+Actually, there were zero interactions with this mock.
+
+	at ServiceTest.ClientServiceImplTest.should_search_by_firstname_and_last_name_when_findByFirstNameAndLastName_is_called(ClientServiceImplTest.java:79)
+
