@@ -5,6 +5,8 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -47,36 +49,100 @@ public class ClientDaoTest {
 	
 	@Test
 	public void givenEntityRepository_whenUpdating() {
-		// TODO Auto-generated method stub
-		Utilisateur util = new Utilisateur("mdp","login");
-		Client addedClient = clientDao.save(new Client("Eric",336070810,"eric@gmail.com","etudiant",util));
-		LOGGER.info(" -----------Client saved-----------");
-		LOGGER.info("-------------Searching for Client ----------------");
-	
-		Client clientToUpdate = clientDao.findByNom("Eric");
-		LOGGER.info("--------------Client found -------------");
-		LOGGER.info("--------------Verifying Client--------------");
-		clientToUpdate.setNom("Eric");
-		clientDao.save(clientToUpdate);
-		assertNotEquals(addedClient, clientToUpdate);
+		LOGGER.info("------------- Testing givenEntityRepository_whenUpdating Method---------");
 		
+		Utilisateur util = new Utilisateur("mdp","login");
+		Client updatedClient = clientDao.save(new Client("Eric",336070810,"eric@gmail.com","etudiant",util));
+		LOGGER.info("------------Utilisateur saved-----------");
+		
+		LOGGER.info("------------Update Client------------------");
+		updatedClient.setNom("Dali");
+		clientDao.save(updatedClient);
+		LOGGER.info("-------------Client updated-----------");
+		
+		LOGGER.info("------------Searching for Client------------------");
+		Client foundClient = clientDao.findByNom(updatedClient.getNom());
+		LOGGER.info("-------------Client found-----------");
+			
+		LOGGER.info("-----------------Verifying Client----------");
+		assertEquals(updatedClient.getNom(), foundClient.getNom());
+		LOGGER.info("-------------- Client verified----------------------");
 	}
 	
 	@Test
 	public void givenEntityRepository_whenDeleting() {
-		// TODO Auto-generated method stub
+		LOGGER.info("------------- Testing givenEntityRepository_whenDeleting Method---------");
 		Utilisateur util = new Utilisateur("mdp","login");
+		Client deletedClient = clientDao.save(new Client("Eric",336070810,"eric@gmail.com","etudiant",util));
+	
+		LOGGER.info("------------Client saved-----------");
+		
+		LOGGER.info("------------Delete Client------------------");
+		clientDao.delete(deletedClient);
+		LOGGER.info("-------------Client deleted-----------");
+		
+		LOGGER.info("------------Searching for Client------------------");
+		Client foundClient = clientDao.findByNom(deletedClient.getNom());
+		LOGGER.info("-------------Client found-----------");
+			
+		LOGGER.info("-----------------Verifying Client----------");
+		assertNull(foundClient);
+		LOGGER.info("-------------- Client verified----------------------");
+		
+	}
+	 @Test
+	public void givenEntityRepository_whenRetrievingAll() {	
+		
+		LOGGER.info("------------- Testing givenEntityRepository_whenRetrievingOneByNom Method---------");
+		Utilisateur util = new Utilisateur("mdp","login");
+		 clientDao.save(new Client("Eric",336070810,"eric@gmail.com","etudiant",util));
+		LOGGER.info("------------Client saved-----------");
+		
+		LOGGER.info("------------Searching for Client------------------");
+		List<Client> foundClient = clientDao.findAll();
+		LOGGER.info("-------------Client found-----------");
+		
+		LOGGER.info("-----------------Verifying Client----------");
+		assertNotNull(foundClient);
+		assertEquals(foundClient.size() >0, true);
+		LOGGER.info("-------------- Client verified----------------------");
 
-	Client addedClient = clientDao.save(new Client("Eric",336070810,"eric@gmail.com","etudiant",util));
-	LOGGER.info(" ------------Client saved-----------");
-	LOGGER.info("-------------Searching for Client ----------------");
-	Client clientToDelete= clientDao.findByNom("Eric");
-	clientDao.delete(clientToDelete);
-	LOGGER.info("--------------Client à supprimer -------------");
-	LOGGER.info("--------------Verifying Client--------------");
-	clientToDelete= clientDao.findByNom("Eric");
-	assertNull(clientToDelete);
+
 	}
 	
+	 @Test
+		public void givenEntityRepository_whenRetrievingId() {	
+		 LOGGER.info("------------- Testing givenEntityRepository_whenRetrievingOneByNom Method---------");
+
+	 Utilisateur util = new Utilisateur("mdp","login");
+		Client findById =  clientDao.save(new Client("Eric",336070810,"eric@gmail.com","etudiant",util));
+
+		LOGGER.info("------------Client saved-----------");
+		
+		LOGGER.info("------------Searching for Client------------------");
+		Client foundClient= clientDao.findById(findById.getId());
+		LOGGER.info("-------------Client found-----------");
+		
+		LOGGER.info("-----------------Verifying Client----------");
+		assertEquals(findById.getId(), foundClient.getId());
+		LOGGER.info("-------------- Client verified----------------------");
+	 
+	 }
+	
+	 @Test
+	public void givenEntityRepository_whenRetrievingOneByNom() {
+		LOGGER.info("------------- Testing givenEntityRepository_whenRetrievingOneByNom Method---------");
+		Utilisateur util = new Utilisateur("mdp","login");
+		Client findByNom = clientDao.save(new Client("Jean",336070810,"eric@gmail.com","etudiant",util));
+		LOGGER.info("------------Client saved-----------");
+	
+		LOGGER.info("------------Searching for Client------------------");
+		Client foundClient = clientDao.findByNom(findByNom.getNom());
+		LOGGER.info("-------------Client found-----------");
+	
+		LOGGER.info("-----------------Verifying Client----------");
+		assertEquals(findByNom.getNom(), foundClient.getNom());
+		LOGGER.info("-------------- Client verified----------------------");
+	}
 	
 }

@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: DaoTest.ClientDaoTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.027 s - in DaoTest.ClientDaoTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.178 s - in DaoTest.ClientDaoTest

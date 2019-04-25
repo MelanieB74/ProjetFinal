@@ -14,11 +14,11 @@ public class Stock {
 	
 	// ============================ ATTRIBUTS ========================================
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id_prod;
 	
-	//type de produits : matériels ou alimentaires
+	//type de produits : matï¿½riels ou alimentaires
 	@Column(name="type_prod") 
 	private String type;
 	
