@@ -6,11 +6,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+/**
+ * Classe pour déclarer les attributs en commun avec toutes les personnes de
+ * l'aplication (id, nom, telephone et mail). @MappedSuperclass permet de
+ * déclarer cette classe mais elle ne créera pas de table dans la base de donnée. 
+ * Autrement dit, elle permet d'utiliser les varaibles dans d'autres classes : 
+ * Client, ClientEntreprise, Employe.
+ */
+
 @MappedSuperclass
 public class Personne {
 	
 	
-	// ============================ ATTRIBUTS ========================================
+	// ===================== ATTRIBUTS =====================
+	/**
+	 * l'id est une primary key et est auto-incrément.
+	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_pers")
@@ -26,7 +37,7 @@ public class Personne {
 	private String mail;
 		
 	
-	// ============================ CONSTRUCTEURS ====================================	
+	// ===================== CONSTRUCTEURS =====================
 	public Personne() {
 		super();
 	}
@@ -47,7 +58,7 @@ public class Personne {
 	}
 	
 	
-	// ========================== GETTERS ET SETTERS ================================	
+	// ===================== GETTERS ET SETTERS =====================
 	public int getId() {
 		return id;
 	}

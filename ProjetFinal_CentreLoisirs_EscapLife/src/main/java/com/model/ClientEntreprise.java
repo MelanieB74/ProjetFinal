@@ -3,33 +3,37 @@ package com.model;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+/**
+ * Cette classe hérite de la classe Client (et donc de la Personne). Il s'agit
+ * des clients moraux (ou entreprise).
+ */
+
 @DiscriminatorValue("entreprise")
 
 @Entity
 public class ClientEntreprise extends Client {
 	
 	
-	// ============================ ATTRIBUTS ========================================
+	// ===================== ATTRIBUTS =====================
 	private long siret;
 
 	
-	// ============================ CONSTRUCTEURS ====================================	
+	// ===================== CONSTRUCTEURS =====================
 	public ClientEntreprise() {
 		super();
 	}
-
-	public ClientEntreprise(long siret) {
-		super();
-		this.siret = siret;
-	}	
-
+	
+	/**
+	 * Constructeur avec les variables de cette classe et ceux de la classe Personne. La variable 
+	 * statut de la classe Client n'y figure pas grace au constructeur 3 de la classe Client.
+	 */
 	public ClientEntreprise(String nom, long siret, long tel, String mail, Utilisateur utilisateur) {
 		super(nom, tel, mail, utilisateur);
 		this.siret = siret;
 	}
 
 	
-	// ========================== GETTERS ET SETTERS ================================	
+	// ===================== GETTERS ET SETTERS =====================
 	public long getSiret() {
 		return siret;
 	}

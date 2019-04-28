@@ -10,34 +10,63 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+/**
+ * Classe qui permettre aux clients et aux employes de s'authentifier via leur
+ * login et leur mot de passe. Cette classe permet aussi de joindre
+ * l'utilisateur a un ou plusieurs roles.
+ */
+
 @Entity
 public class Utilisateur {
-	
-	// ============================ ATTRIBUTS ========================================
+
+	// ===================== ATTRIBUTS =====================
+	/**
+	 * l'id est une primary key et est auto-increment.
+	 */
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_utilisateur")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_utilisateur")
 	private int id;
-	
-	//pour l'authentification
-	@Column(name="login")
+
+	/**
+	 * variables permettant l'authentification de l'utilisateur.
+	 */
+	@Column(name = "login")
 	private String userName;
-	
-	@Column(name="motDePasse")
+
+	@Column(name = "motDePasse")
 	private String passWord;
-	
-	@Column(name="cpt_active")
+
+	@Column(name = "cpt_active")
 	private boolean actived;
 	
-	@OneToOne(mappedBy="utilisateur")
-	private Employe employe;
+//	/**
+//	 * Jointure avec la table Client pour affecter un login et un mot de passe
+//	 * au client afin qu'il puisse acceder aux services clients uniquement de
+//	 * l'application. Relation OneToOne : 1 client ne peut avoir qu'un login et
+//	 * un mot de passe.
+//	 */
+//	@OneToOne(mappedBy = "utilisateur")
+//	private Client client;
 	
-	//pour l'autorisation d'acc�s
+	/**
+	 * Jointure avec la table Employe pour affecter un login et un mot de passe
+	 * à l'employe afin qu'il puisse acceder aux différents services de l'application. 
+	 * Relation OneToOne : 1 client ne peut avoir qu'un login et un mot de passe.
+	 */
+	@OneToOne(mappedBy = "utilisateur")
+	private Employe employe;
+
+	/**
+	 * Jointure avec la table Role pour affecter un ou plusieurs roles a
+	 * l'utilisateur (clients et employes). Relation OneToMany : 1 utilisateur
+	 * contient 1,* role.
+	 */
 	@OneToMany(mappedBy = "utilisateur")
 	private List<Role> roles;
-	
 
-	// ============================ CONSTRUCTEURS ====================================
+	
+	// ===================== CONSTRUCTEURS =====================
 	public Utilisateur() {
 		super();
 	}
@@ -47,6 +76,13 @@ public class Utilisateur {
 		this.userName = userName;
 		this.passWord = passWord;
 	}
+	
+//	public Utilisateur(String userName, String passWord, Client client) {
+//		super();
+//		this.userName = userName;
+//		this.passWord = passWord;
+//		this.client = client;
+//	}
 
 	public Utilisateur(String userName, String passWord, Employe employe) {
 		super();
@@ -56,14 +92,14 @@ public class Utilisateur {
 	}
 
 	
-	// ========================== GETTERS ET SETTERS ================================	
+	// ===================== GETTERS ET SETTERS =====================
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public String getUserName() {
 		return userName;
 	}
@@ -91,6 +127,13 @@ public class Utilisateur {
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
+	
+//	public Client getClient() {
+//		return client;
+//	}
+//	public void setClient(Client client) {
+//		this.client = client;
+//	}
 
 	public Employe getEmploye() {
 		return employe;
@@ -98,6 +141,5 @@ public class Utilisateur {
 	public void setEmploye(Employe employe) {
 		this.employe = employe;
 	}
-
 
 }

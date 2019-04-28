@@ -12,6 +12,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/**
+ * Classe pour déclarer les employés du centre de loisirs. Cette classe permet de
+ * créer la table "employe_infos" dans la base de donnée par @Entity et @Table.
+ * Elle hérite de la classe Personne.
+ */
+
+//je pense qu'il faudra enlever Single_Table car inutile : le responsable n'aura pas d'attribut en plus de cetlle-ci. 
+
 //@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 //@DiscriminatorColumn(name="type_emp", discriminatorType=DiscriminatorType.STRING)
 //@DiscriminatorValue("employe")
@@ -21,7 +29,11 @@ import javax.persistence.Table;
 public class Employe extends Personne {
 	
 	
-	// ============================ ATTRIBUTS ========================================
+	// ===================== ATTRIBUTS =====================
+	/**
+	 * La variable "type" permet de différencier les employés selon l'activité gérée 
+	 * et le responsable du centre de loirsirs.
+	 */
 	@Column(name="type_emp")
 	private String type;
 	
@@ -29,41 +41,39 @@ public class Employe extends Personne {
 	
 	private int matricule;
 	
-	//jointure avec la table Utilisateur pour lui affecter un r�le (selon son id_utilisateur)
+	/**
+	 * Jointure avec la table Utilisateur (via id_utilisateur) pour affecter un
+	 * login et un mot de passe à l'employé afin qu'il puisse accéder aux services 
+	 * auxquels il est autorisé d'accéder. 
+	 * Relation OneToOne : 1 employé ne peut avoir qu'un login et un mot de passe.
+	 */
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_utilisateur")
 	Utilisateur utilisateur;
 
 	
-	// ============================ CONSTRUCTEURS ====================================
+	// ===================== CONSTRUCTEURS =====================
 	public Employe() {
 		super();
 	}
 
-	public Employe(String prenom, int matricule) {
-		super();
-		this.prenom = prenom;
-		this.matricule = matricule;
-	}
-
-
 	public Employe(String type, String nom, String prenom, int matricule, long tel, String mail, Utilisateur utilisateur) {
 		super(nom, tel, mail);
-		this.type= type;
+		this.type = type;
 		this.prenom = prenom;
 		this.matricule = matricule;
 		this.utilisateur = utilisateur;
 	}
 
 	
-	// ========================== GETTERS ET SETTERS ================================	
+	// ===================== GETTERS ET SETTERS =====================
 	public String getType() {
 		return type;
 	}
 	public void setType(String type) {
 		this.type = type;
 	}
-	
+
 	public String getPrenom() {
 		return prenom;
 	}

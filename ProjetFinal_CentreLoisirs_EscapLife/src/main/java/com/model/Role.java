@@ -8,24 +8,42 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * Classe permettant de declarer et affecter les differents roles aux
+ * utilisateurs de l'application. Cette classe permet de creer la table "roles"
+ * dans la base de donn√©e par @Entity et @Table.
+ * 
+ */
+
 @Entity
-@Table(name="roles")
+@Table(name = "roles")
 public class Role {
-	
-	// ============================ ATTRIBUTS ========================================
+
+	// ===================== ATTRIBUTS =====================
+	/**
+	 * l'id est une primary key et est auto-increment.
+	 */
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	//pour l'autorisation des utilisateurs ‡ accËder ‡ certains services
+
+	/**
+	 * variable permettant de declarer le role de l'utilisateur.
+	 */
 	private String roleName;
-	
+
+	/**
+	 * Jointure avec la table Utilisateur (via id_utilisateur) pour affecter un
+	 * ou plusieurs role a l'utilisateur afin qu'il puisse acc√©der aux services
+	 * lui correspondant. Relation ManyToOne : 1,* role affecter a 1
+	 * utilisateur.
+	 */
 	@ManyToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "id_utilisateur")
 	private Utilisateur utilisateur;
 
 	
-	// ============================ CONSTRUCTEURS ====================================
+	// ===================== CONSTRUCTEURS =====================
 	public Role() {
 		super();
 	}
@@ -40,10 +58,9 @@ public class Role {
 		this.roleName = roleName;
 		this.utilisateur = utilisateur;
 	}
-	
 
 	
-	// ========================== GETTERS ET SETTERS ================================
+	// ===================== GETTERS ET SETTERS =====================
 	public int getId() {
 		return id;
 	}
