@@ -53,7 +53,7 @@ public class ClientDaoTest {
 		
 		Utilisateur util = new Utilisateur("mdp","login");
 		Client updatedClient = clientDao.save(new Client("Eric",336070810,"eric@gmail.com","etudiant",util));
-		LOGGER.info("------------Utilisateur saved-----------");
+		LOGGER.info("------------Client saved-----------");
 		
 		LOGGER.info("------------Update Client------------------");
 		updatedClient.setNom("Dali");
