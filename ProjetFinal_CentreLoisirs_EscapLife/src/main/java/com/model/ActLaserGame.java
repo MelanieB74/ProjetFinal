@@ -1,6 +1,7 @@
 package com.model;
 
-import javax.persistence.Column;
+import java.util.List;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
@@ -15,8 +16,7 @@ import javax.persistence.Entity;
 public class ActLaserGame extends Activite {
 
 	// ===================== ATTRIBUTS =====================
-	@Column(name = "nom_salle")
-	private int nomSalle;
+	private String theme;
 
 	
 	// ===================== CONSTRUCTEURS =====================
@@ -28,20 +28,25 @@ public class ActLaserGame extends Activite {
 	 * Constructeur contenant les variables de la classe mere Activite et celui
 	 * de cette classe.
 	 */
-	public ActLaserGame(int nomSalle, float tarifEtudiant, float tarifNormal, float tarifJeune, 
-			float tarifEntreprise, int nbMax, int nbMin, int nbSalle) {
+	public ActLaserGame(float tarifEtudiant, float tarifNormal, float tarifJeune, float tarifEntreprise, int nbMax,
+			int nbMin, List<Reservation> reservations, String theme) {
+		super(tarifEtudiant, tarifNormal, tarifJeune, tarifEntreprise, nbMax, nbMin, reservations);
+		this.theme = theme;
+	}
+
+	public ActLaserGame(float tarifEtudiant, float tarifNormal, float tarifJeune, float tarifEntreprise, int nbMax,
+			int nbMin, String theme) {
 		super(tarifEtudiant, tarifNormal, tarifJeune, tarifEntreprise, nbMax, nbMin);
-		this.nomSalle = nomSalle;
+		this.theme = theme;
 	}
-
 	
-	// ===================== GETTERS ET SETTERS =====================
-	public int getNomSalle() {
-		return nomSalle;
-	}
 
-	public void setNomSalle(int nomSalle) {
-		this.nomSalle = nomSalle;
+	// ===================== GETTERS ET SETTERS =====================
+	public String getTheme() {
+		return theme;
+	}
+	public void setTheme(String theme) {
+		this.theme = theme;
 	}
 
 }

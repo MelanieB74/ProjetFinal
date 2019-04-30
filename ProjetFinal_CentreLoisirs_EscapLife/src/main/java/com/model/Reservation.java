@@ -1,6 +1,5 @@
 package com.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -33,10 +31,12 @@ public class Reservation {
 	private int id;
 	
 	@Column(name="date_debut")
-	private String dtDeb;
+	private String date;
 	
 	@Column(name="heure_debut")
-	private String hrDeb;
+	private String heure;
+	
+	private boolean creche;
 	
 	/**
 	 * Jointure avec la table Activite (via id_activite) pour pouvoir affecter 
@@ -47,9 +47,14 @@ public class Reservation {
 	@JoinColumn(name="id_activite")
 	private Activite activite;
 	
-//	//lien avec l'id de l'Activite choisie
-//	@OneToOne(mappedBy="reservation")
-//	private Activite activite;
+	/**
+	 * Jointure avec la table Client (via id_person) pour pouvoir affecter 
+	 * joindre la reservation a un client. 
+	 * Relation ManyToOne : 1,* reservations peuvent contenir 1 activite.
+	 */
+	@ManyToOne
+	@JoinColumn(name="id_client")
+	private Client client;
 
 		
 	// ===================== CONSTRUCTEURS =====================
@@ -59,10 +64,11 @@ public class Reservation {
 	/**
 	 * Constructeur avec les variables de cette classe (sauf l'id car auto-increment)
 	 */
-	public Reservation(String dtDeb, String hrDeb, Activite activite) {
-		this.dtDeb = dtDeb;
-		this.hrDeb = hrDeb;
+	public Reservation(String date, String heure, Activite activite, Client client) {
+		this.date = date;
+		this.heure = heure;
 		this.activite = activite;
+		this.client = client;
 	}
 	
 	
@@ -74,18 +80,25 @@ public class Reservation {
 		this.id = id;
 	}
 
-	public String getDtDeb() {
-		return dtDeb;
+	public String getDate() {
+		return date;
 	}
-	public void setDtDeb(String dtDeb) {
-		this.dtDeb = dtDeb;
+	public void setDate(String date) {
+		this.date = date;
 	}
-
-	public String getHrDeb() {
-		return hrDeb;
+	
+	public String getHeure() {
+		return heure;
 	}
-	public void setHrDeb(String hrDeb) {
-		this.hrDeb = hrDeb;
+	public void setHeure(String heure) {
+		this.heure = heure;
+	}
+	
+	public boolean isCreche() {
+		return creche;
+	}
+	public void setCreche(boolean creche) {
+		this.creche = creche;
 	}
 
 	public Activite getActivite() {
@@ -93,6 +106,13 @@ public class Reservation {
 	}
 	public void setActivite(Activite activite) {
 		this.activite = activite;
+	}
+	
+	public Client getClient() {
+		return client;
+	}
+	public void setClient(Client client) {
+		this.client = client;
 	}
 	
 }

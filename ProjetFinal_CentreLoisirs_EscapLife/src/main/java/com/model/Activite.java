@@ -14,9 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -67,12 +65,6 @@ public class Activite {
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="activite", fetch=FetchType.LAZY)
 	List<Reservation> reservations = new ArrayList<Reservation>();
 	
-//	J'ai change le type de relation en One to Many car je pense que une activite peut contenir plusieurs reservation :
-//	exemple : activite1 est reservee le 3 avril mais aussi le 5 mai par des clients differents.
-//	@OneToOne(cascade=CascadeType.ALL)
-//	@JoinColumn(name="id_activite")
-//	Reservation reservation;
-	
 	
 	// ===================== CONSTRUCTEURS =====================
 	public Activite() {
@@ -85,14 +77,12 @@ public class Activite {
 	 */
 	public Activite(float tarifEtudiant, float tarifNormal, float tarifJeune, float tarifEntreprise, int nbMax,
 			int nbMin) {
-
 		this.tarifEtudiant = tarifEtudiant;
 		this.tarifNormal = tarifNormal;
 		this.tarifJeune = tarifJeune;
 		this.tarifEntreprise = tarifEntreprise;
 		this.nbMax = nbMax;
 		this.nbMin = nbMin;
-
 	}
 
 	/**
@@ -166,15 +156,5 @@ public class Activite {
 	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
 	}
-	
-
-//	Getter pour la relation OneToOne
-//	public Reservation getReservation() {
-//		return reservation;
-//	}
-//	public void setReservation(Reservation reservation) {
-//		this.reservation = reservation;
-//	}
-
-	
+		
 }

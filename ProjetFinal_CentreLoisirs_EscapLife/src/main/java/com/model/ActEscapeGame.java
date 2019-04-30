@@ -1,5 +1,7 @@
 package com.model;
 
+import java.util.List;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
@@ -23,15 +25,22 @@ public class ActEscapeGame extends Activite {
 	}
 
 	/**
-	 * Constructeur contenant les variables de la classe mere Activite et celui de cette classe.
+	 * Constructeur contenant les variables de la classe mere Activite et celui
+	 * de cette classe.
 	 */
 	public ActEscapeGame(String mission, float tarifEtudiant, float tarifNormal, float tarifJeune,
-			float tarifEntreprise, int nbMax, int nbMin) {
-		super(tarifEtudiant, tarifNormal, tarifJeune, tarifEntreprise, nbMax, nbMin);
+			float tarifEntreprise, int nbMax, int nbMin, List<Reservation> reservations) {
+		super(tarifEtudiant, tarifNormal, tarifJeune, tarifEntreprise, nbMax, nbMin, reservations);
 		this.mission = mission;
 	}
 
+	public ActEscapeGame(float tarifEtudiant, float tarifNormal, float tarifJeune, float tarifEntreprise, int nbMax,
+			int nbMin, String mission) {
+		super(tarifEtudiant, tarifNormal, tarifJeune, tarifEntreprise, nbMax, nbMin);
+		this.mission = mission;
+	}
 	
+
 	// ===================== GETTERS ET SETTERS =====================
 	public String getMission() {
 		return mission;

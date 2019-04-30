@@ -1,14 +1,19 @@
 package com.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -45,6 +50,14 @@ public class Client extends Personne {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_utilisateur")
 	Utilisateur utilisateur;
+	
+	/**
+	 * Jointure avec la table Reservation (via id_reserv) pour affecter une reservation au client.
+	 * Relation OneToMany : 1 client ne peut avoir qu'un login et un mot de passe.
+	 */
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="client", fetch=FetchType.LAZY)
+	List<Reservation> reservations = new ArrayList<Reservation>();
+	
 
 	
 	// ===================== CONSTRUCTEURS =====================
@@ -53,7 +66,7 @@ public class Client extends Personne {
 	}
 	
 	/**
-	 * Constructeur 2 avec les variables de cette classe et ceux de la classe Personne.
+	 * Constructeur1 avec les variables de cette classe et ceux de la classe Personne.
 	 */
 	public Client(String nom, long tel, String mail, String statut, Utilisateur utilisateur) {
 		super(nom, tel, mail);
@@ -62,11 +75,25 @@ public class Client extends Personne {
 	}
 
 	/**
-	 * Constructeur contenant 3 les entiers qui serviront dans la classe clientEntreprise.
+	 * Constructeur 2 avec les variables de cette classe et ceux de la classe
+	 * Personne.
 	 */
-	public Client(String nom, long tel, String mail, Utilisateur utilisateur) {
+	public Client(String nom, long tel, String mail, String statut, Utilisateur utilisateur,
+			List<Reservation> reservations) {
+		super(nom, tel, mail);
+		this.statut = statut;
+		this.utilisateur = utilisateur;
+		this.reservations = reservations;
+	}
+
+	/**
+	 * Constructeur 3 contenant les entiers qui serviront dans la classe
+	 * clientEntreprise.
+	 */
+	public Client(String nom, long tel, String mail, Utilisateur utilisateur, List<Reservation> reservations) {
 		super(nom, tel, mail);
 		this.utilisateur = utilisateur;
+		this.reservations = reservations;
 	}
 
 	
@@ -83,6 +110,13 @@ public class Client extends Personne {
 	}
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
+	}
+	
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
 	}
 
 }
